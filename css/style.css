@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+
+body{
+    font-family: 'Noto-Sans', sans-serif;
+}
+
+main{
+    margin-top: 60px;
+}
+
+#insertForm, #insertKategorieForm{
+}
+
+.context-forms{
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 1px 1px 3px black;
+    border-radius: 3px;
+    display: none;
+}
+
+#button_add_artikel{
+    margin-top: 10px;
+}
+
+.logo{
+    height: 30px;
+    margin-top: -5px;
+}
+
+.context-forms--header{
+    margin-bottom: 10px;
+    font-size: large;
+    /*color: #fca446;*/
+    /*color: #3097ff;*/
+    text-shadow: 1px 1px 0px white;
+    /*text-shadow: 1px 1px 0px #fca446;*/
+}
+
+.artikel-list--wrapper ul li{
+    background-color: #f7f8f9;
+}
+
+.glyphicon{
+    cursor: pointer;
+}
+
+.initial-info{
+    font-size: larger;
+    color: #f48042;
+}
+
+.typ-badge{
+    cursor: pointer;
+}
+.typ-badge:hover{
+    background-color: black;
+}

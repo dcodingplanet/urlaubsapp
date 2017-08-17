@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Urlaubs-App</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <link rel="stylesheet" href="css/bootstrap.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <script src="js/jquery.js"></script>
+        <script src="js/jquery-ui.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <!--<script src="js/app.js"></script>-->
+        <script src="js/db.js"></script>
+
+    </head>
+    <body>
+        <header>
+        </header>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <!--                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                            <span class="sr-only">Toggle navigation</span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>-->
+                    <a class="navbar-brand" id="app-logo"><span><img class="logo" src="images/logo.png"></span></a>
+                    <a class="navbar-brand" id="app-info-button"><span class="glyphicon glyphicon-info-sign"></span></a>
+                    <a class="navbar-brand" id="addArtikel"><span class="glyphicon glyphicon-plus"></span></a>
+                    <a class="navbar-brand" id="addKategorie"><span class="glyphicon glyphicon-tag"></span></a>
+                    <a class="navbar-brand" id="showArtikelAktiv"><span class="glyphicon glyphicon-briefcase"></span></a>
+                </div>
+                <!--                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                    <ul class="nav navbar-nav">
+                                        <li class="active"><a id="app-info-button"><span class="glyphicon glyphicon-info-sign"></span></a></li>
+                                    </ul>
+                                </div>-->
+            </div>
+        </nav>
+        <main>
+            <!-- The insert form for the Artikel-->
+            <div id="insertForm" class="context-forms">
+                <div class="context-forms--header">Neuen Artikel erstellen</div>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label class="sr-only" for="input_artikel_name">Name/Bezeichnung</label>
+                        <input type="text" class="form-control" id="input_artikel_name" placeholder="Name/Bezeichnung">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="input_artikel_menge">Menge</label>
+                        <input type="text" class="form-control" id="input_artikel_menge" placeholder="Menge">
+                    </div>
+                    <select class="form-control" id="input_artikel_typ"></select>
+                    <button type="button" id="button_add_artikel" class="btn btn-default">Ok</button>
+                </form>
+            </div>
+
+            <!-- The insert form for the Kategorie-->
+            <div id="insertKategorieForm" class="context-forms">
+                <div class="context-forms--header">Neue Kategorie erstellen</div>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label class="sr-only" for="input_kategorie_name">Name/Bezeichnung</label>
+                        <input type="text" class="form-control" id="input_kategorie_name" placeholder="Name/Bezeichnung">
+                    </div>
+                    <button type="button" id="button_add_kategorie" class="btn btn-default">Ok</button>
+                </form>
+            </div>
+
+            <!-- Dialoge -->
+            <div id="app-info-dialog" class="context-forms">
+                <div class="context-forms--header">Hinweise zur Benutzung</div>
+                <div class="info-block">
+                    <p>Mit dem <span class="glyphicon glyphicon-plus"></span>-Symbol kannst du einen neuen Artikel hinzufügen.</p>
+                    <p>Mit dem <span class="glyphicon glyphicon-tag"></span>-Symbol kannst du eine neue Kategorie hinzufügen</p>
+                    <p>
+                        Mit dem <span class="glyphicon glyphicon-briefcase"></span>-Symbol kannst du dir <b>nur</b> die <b>nicht aktivierten</b> Artikel anzeigen lassen.
+                        Wenn du diese Ansicht aktiviert hast, kannst du mit dem <span class="glyphicon glyphicon-eye-open"></span>-Symbol wieder alle Artikel anzeigen.
+                    </p>
+                    <p>Mit dem <span class="glyphicon glyphicon-trash"></span>-Symbol kannst du einen Artikel aus der Liste <b>löschen</b>.</p>
+                    <p>Mit dem <span class="glyphicon glyphicon-ok"></span>-Symbol kannst du einen Artikel <b>aktivieren</b>. Aktiviert heißt, dass der Artikel eingepackt wurde.</p>
+                    <p>Mit einem Klick auf ein <span class="badge">Kategorie</span>-Symbol kannst du genau nach dieser Kategorie filtern.</p>
+                    <p>Sortiert wird immer nach dem Artikelnamen alphabetisch absteigend, sowie nach den Kategorien, ebenfalls alphabetisch absteigend.</p>
+                    <p class="initial-info">Wenn du noch keine Kategorie erstellt hast, solltest du <b>zuerst</b> eine Kategorie mit dem <span class="glyphicon glyphicon-tag"></span>-Symbol erstellen.</p>
+
+                </div>
+                <button type="button" id="button_info_close" class="btn btn-default">Ok</button>
+            </div>
+
+
+            <!-- The main Artikel-List-->
+            <div class="container-fluid artikel-list--wrapper">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul id="Liste" class="list-group"></ul>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        <footer></footer>
+        <script src="js/libapp.js"></script>
+    </body>
+</html>
