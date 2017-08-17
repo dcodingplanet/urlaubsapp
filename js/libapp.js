@@ -293,6 +293,7 @@ var UrlaubsApp = UrlaubsApp || (function () {
         });
         
         $("#app-logo").click(function(){
+            $(".context-forms").hide(0);
             if(currentLogoTransform == 360){
                 currentLogoTransform = 0;
             }
