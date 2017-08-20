@@ -45,6 +45,21 @@ var UrlaubsApp = UrlaubsApp || (function () {
             });
         });
     };
+    
+    var deleteKategorie = function(kategorieName) {
+        setServer().then(function (r) {
+            server.kategorie.query().all().execute().then(function (results){
+                results.forEach(function(item){
+                    if(item.name == kategorieName){
+                        server.kategorie.remove(parseInt(item.kid)).then(function(el){
+                            //Kategorie deleted
+                        });
+                    }
+                });
+                getKategorien();
+            });
+        });
+    };
 
     var getKategorien = function () {
         setServer().then(function (r) {
@@ -227,6 +242,11 @@ var UrlaubsApp = UrlaubsApp || (function () {
             $(".context-forms").hide(0);
             $("#insertKategorieForm").toggle(500);
         });
+        
+        $("#deleteKategorie").click(function (e) {
+            $(".context-forms").hide(0);
+            $("#deleteKategorieForm").toggle(500);
+        });
 
         $(".navbar-toggle").click(function () {
             $(".context-forms").hide(0);
@@ -249,11 +269,14 @@ var UrlaubsApp = UrlaubsApp || (function () {
                 console.error("Error", "The name ofthe Artikel, the Menge of the Artikel or the Typ of the Artikel is empty.");
                 return;
             }
+            /*
+             * The aktiv-value has to be an integer.
+             */
             var art = {
                 name: $.trim($("#input_artikel_name").val()),
                 menge: $.trim($("#input_artikel_menge").val()),
                 typ: $.trim($("#input_artikel_typ").val()),
-                aktiv: '0'
+                aktiv: 0
             };
             $("#insertForm").toggle(0);
             insertArtikel(art);
@@ -270,6 +293,16 @@ var UrlaubsApp = UrlaubsApp || (function () {
             };
             $("#insertKategorieForm").toggle(0);
             insertKategorie(kategorie);
+        });
+        
+        $("#button_delete_kategorie").click(function(){
+            var kategorieName = $.trim($("#input_kategorie_delete_name").val());
+            if(kategorieName == "") {
+                console.error("Error", "The name of the Kategorie is empty.");
+                return;
+            }
+            $("#deleteKategorieForm").toggle(0);
+            deleteKategorie(kategorieName);
         });
 
         $("#showArtikelAktiv").click(function () {
@@ -293,12 +326,15 @@ var UrlaubsApp = UrlaubsApp || (function () {
         });
         
         $("#app-logo").click(function(){
+            //hide context-forms
             $(".context-forms").hide(0);
-            if(currentLogoTransform == 360){
-                currentLogoTransform = 0;
-            }
-            currentLogoTransform = currentLogoTransform + 45;
-            $("#app-logo img").css("transform", "rotate(" + currentLogoTransform + "deg)");
+        });
+        
+        /*
+         * Prevent submitting the form
+         */
+        $(".app-form").submit(function(event){
+            event.preventDefault();
         });
     };
 
